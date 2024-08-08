@@ -1,0 +1,67 @@
+version: 1.0.0
+name: CRM Backend API
+description: API for managing users and companies in the CRM application.
+
+# Paths define the API endpoints
+paths:
+  /api/users:
+    get:
+      summary: Get all users
+      description: Retrieve a list of all users.
+      responses:
+        '200':
+          description: A JSON array of user objects
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    name:
+                      type: string
+                    username:
+                      type: string
+                    email:
+                      type: string
+                    address:
+                      type: object
+                      properties:
+                        street:
+                          type: string
+                        suite:
+                          type: string
+                        city:
+                          type: string
+                        zipcode:
+                          type: string
+                        geo:
+                          type: object
+                          properties:
+                            lat:
+                              type: string
+                            lng:
+                              type: string
+                    phone:
+                      type: string
+                    website:
+                      type: string
+                    company:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                        catchPhrase:
+                          type: string
+                        bs:
+                          type: string
+
+# Backend service configuration
+backend:
+  routes:
+    - path: /api/users
+      method: get
+      target:
+        url: http://localhost:3000/api/users # The local endpoint to route the request to
