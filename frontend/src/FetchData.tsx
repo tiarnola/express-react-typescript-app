@@ -39,7 +39,7 @@ const FetchData: React.FC = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("http://localhost:3000/api/user");
+        const response = await fetch("http://localhost:8080/api/user");
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
