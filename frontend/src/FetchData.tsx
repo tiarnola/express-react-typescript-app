@@ -35,18 +35,18 @@ const FetchData = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
-  const localUrl = "http://localhost:8080/api/user";
-  const apiUrl = "/choreo-apis/crm-app/backend/v1";
+  //const localUrl = "http://localhost:8080/api/user";
+  const apiUrl = "https://cd48c9e8-e4fc-4728-ae3d-eeb050886734-dev.e1-eu-north-azure.choreoapis.dev/crm-app/backend/v1.0/api/user";
 
-  const correctUrl = localUrl ? localUrl : apiUrl;
+  //const correctUrl = localUrl ? localUrl : apiUrl;
 
-  console.log("here is the url being used for the frontend; "+ correctUrl);
+  console.log("here is the url being used for the frontend; "+ apiUrl);
 
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(correctUrl);
+        const response = await fetch(apiUrl);
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
