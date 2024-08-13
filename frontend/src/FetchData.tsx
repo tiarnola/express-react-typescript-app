@@ -28,23 +28,27 @@ interface User {
   company: Company;
 }
 
-// src/FetchData.tsx
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
-const FetchData: React.FC = () => {
+const FetchData = () => {
   const [data, setData] = useState<User[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
+  const localUrl = "http://localhost:8080/api/user";
+  const apiUrl = "/choreo-apis/crm-app/backend/v1";
+
+
+
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("http://localhost:8080/api/user");
+        const response = await fetch(localUrl ? localUrl : apiUrl);
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
         const json: User[] = await response.json();
-        console.log("Fetched data:", json); // Log the data here
+        console.log("Fetched data:", json);
         setData(json);
       } catch (error: unknown) {
         console.error("Fetch error:", error);
